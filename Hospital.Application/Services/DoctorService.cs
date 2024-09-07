@@ -1,3 +1,4 @@
+using System.Data.Common;
 using AutoMapper;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Application.Models.Views;
@@ -17,6 +18,15 @@ public class DoctorService : IDoctorService
         _mapper = mapper;
     }
 
+    public async Task<DoctorView> GetById(int id)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
+
+        var doctor = await _unitOfWork.DoctorRepository.GetById(id);
+
+        return _mapper.Map<DoctorView>(doctor);
+    }
+
     public async Task<IEnumerable<DoctorView>> GetByQuery(DoctorView query)
     {
         ArgumentNullException.ThrowIfNull(query);
@@ -28,22 +38,24 @@ public class DoctorService : IDoctorService
         return _mapper.Map<IEnumerable<DoctorView>>(doctors);
     }
 
-    public async Task<DoctorView> Create(DoctorView doctor)
+    public async Task<DoctorView> Create(DoctorView doctorView)
     {
-        var doctorDto = _mapper.Map<DoctorDto>(doctor);
+        var doctorDto = _mapper.Map<DoctorDto>(doctorView);
 
         var newDoctor = await _unitOfWork.DoctorRepository.Create(doctorDto);
 
         return _mapper.Map<DoctorView>(newDoctor);
     }
 
-    public async Task<DoctorView> Update(DoctorView doctor)
+    public async Task<DoctorView> Update(int id, DoctorView doctorView)
     {
-        ArgumentNullException.ThrowIfNull(doctor);
+        ArgumentNullException.ThrowIfNull(doctorView);
 
-        var doctorDto = _mapper.Map<DoctorDto>(doctor);
+        var existingDoctor = await _unitOfWork.DoctorRepository.GetById(id);
 
-        var newDoctor = await _unitOfWork.DoctorRepository.Update(doctorDto);
+        var doctor = _mapper.Map(doctorView, existingDoctor);
+
+        var newDoctor = await _unitOfWork.DoctorRepository.Update(doctor);
 
         return _mapper.Map<DoctorView>(newDoctor);
     }
