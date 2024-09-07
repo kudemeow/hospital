@@ -50,17 +50,17 @@ public class DoctorRepository : IDoctorRepository
 
         if (query.SpecializationId != 0 && query.SpecializationId > 0)
         {
-            entity = entity.Where(x => x.SpecializationId == query.SpecializationId);
+            entity = entity.Where(x => x.SpecializationId == query.SpecializationId).Include(x => x.Specialization.Title);
         }
 
         if (query.OfficeId != 0 && query.OfficeId > 0)
         {
-            entity = entity.Where(x => x.OfficeId == query.OfficeId);
+            entity = entity.Where(x => x.OfficeId == query.OfficeId).Include(x => x.Office.Number);
         }
 
         if (query.UnitId != 0 && query.UnitId > 0)
         {
-            entity = entity.Where(x => x.UnitId == query.UnitId);
+            entity = entity.Where(x => x.UnitId == query.UnitId).Include(x => x.Unit.Number);
         }
 
         if (query.IsUnitDoctor)
@@ -77,11 +77,11 @@ public class DoctorRepository : IDoctorRepository
         return _mapper.Map<IEnumerable<DoctorDto>>(result);
     }
 
-    public async Task<DoctorDto> Create(DoctorDto doctor)
+    public async Task<DoctorDto> Create(DoctorDto doctorDto)
     {
-        ArgumentNullException.ThrowIfNull(doctor);
+        ArgumentNullException.ThrowIfNull(doctorDto);
 
-        var newDoctor = _mapper.Map<Doctor>(doctor);
+        var newDoctor = _mapper.Map<Doctor>(doctorDto);
 
         _context.Doctors.Add(newDoctor);
         await _context.SaveChangesAsync();
@@ -89,11 +89,11 @@ public class DoctorRepository : IDoctorRepository
         return await GetById(newDoctor.Id);
     }
 
-    public async Task<DoctorDto> Update(DoctorDto doctor)
+    public async Task<DoctorDto> Update(DoctorDto doctorDto)
     {
-        ArgumentNullException.ThrowIfNull(doctor);
+        ArgumentNullException.ThrowIfNull(doctorDto);
 
-        var request = _mapper.Map<Doctor>(doctor);
+        var request = _mapper.Map<Doctor>(doctorDto);
 
         _context.Doctors.Update(request);
         await _context.SaveChangesAsync();

@@ -4,8 +4,9 @@ namespace Hospital.Application.Interfaces.Services;
 
 public interface IPatientService
 {
+    Task<PatientView> GetById(int id);
     Task<IEnumerable<PatientView>> GetByQuery(PatientView query);
-    Task<PatientView> Create(PatientView patient);
-    Task<PatientView> Update(PatientView patient);
+    Task<PatientView> Create(PatientView patientView);
+    Task<PatientView> Update(int id, PatientView patientView);
     Task Delete(int id); // better be Deactivate()
 }

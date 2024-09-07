@@ -65,7 +65,7 @@ public class PatientRepository : IPatientRepository
 
         if (query.UnitId != 0 && query.UnitId > 0)
         {
-            entity = entity.Where(x => x.UnitId == query.UnitId);
+            entity = entity.Where(x => x.UnitId == query.UnitId).Include(x => x.Unit.Number);
         }
 
         var result = await entity.ToListAsync();
@@ -73,11 +73,11 @@ public class PatientRepository : IPatientRepository
         return _mapper.Map<IEnumerable<PatientDto>>(result);
     }
 
-    public async Task<PatientDto> Create(PatientDto patient)
+    public async Task<PatientDto> Create(PatientDto patientDto)
     {
-        ArgumentNullException.ThrowIfNull(patient);
+        ArgumentNullException.ThrowIfNull(patientDto);
 
-        var newPatient = _mapper.Map<Patient>(patient);
+        var newPatient = _mapper.Map<Patient>(patientDto);
 
         _context.Patients.Add(newPatient);
         await _context.SaveChangesAsync();
@@ -85,11 +85,11 @@ public class PatientRepository : IPatientRepository
         return await GetById(newPatient.Id);
     }
 
-    public async Task<PatientDto> Update(PatientDto patient)
+    public async Task<PatientDto> Update(PatientDto patientDto)
     {
-        ArgumentNullException.ThrowIfNull(patient);
+        ArgumentNullException.ThrowIfNull(patientDto);
 
-        var request = _mapper.Map<Patient>(patient);
+        var request = _mapper.Map<Patient>(patientDto);
 
         _context.Patients.Update(request);
         await _context.SaveChangesAsync();

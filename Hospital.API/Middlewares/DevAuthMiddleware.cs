@@ -19,7 +19,7 @@ public class DevAuthMiddleware
             {
                 new Claim(ClaimTypes.Name, "devuser"),
                 new Claim(ClaimTypes.NameIdentifier, "1"),
-                new Claim(ClaimTypes.Email, "devuser@rencredit.ru"),
+                new Claim(ClaimTypes.Email, "devuser@gmail.ru"),
                 new Claim(ClaimTypes.Role, "Admin")
             };
 

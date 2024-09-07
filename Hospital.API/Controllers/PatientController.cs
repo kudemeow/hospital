@@ -18,7 +18,17 @@ public class PatientController : ControllerBase
         _service = service;
     }
 
-    [HttpPost("filter")]
+    [HttpGet("getById")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
+
+        var patient = await _service.GetById(id);
+
+        return Ok(patient);
+    }
+
+    [HttpPost("query")]
     public async Task<IActionResult> GetByQuery(PatientView query)
     {
         ArgumentNullException.ThrowIfNull(query);
@@ -38,17 +48,23 @@ public class PatientController : ControllerBase
         return Ok(newPatient);
     }
 
-    [HttpPost("Update")]
-    public async Task<IActionResult> Update(PatientView patient)
+    [HttpPost("update")]
+    public async Task<IActionResult> Update(int id, PatientView patient)
     {
         ArgumentNullException.ThrowIfNull(patient);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
 
-        var newPatient = await _service.Update(patient);
+        if (id != patient.Id)
+        {
+            return BadRequest();
+        }
+
+        var newPatient = await _service.Update(id, patient);
 
         return Ok(newPatient);
     }
 
-    [HttpPost("Delete")]
+    [HttpPost("delete")]
     public async Task<IActionResult> Delete(int id)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
