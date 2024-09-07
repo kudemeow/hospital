@@ -1,0 +1,15 @@
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.csproj.AssemblyReference.cache
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.AssemblyInfoInputs.cache
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.AssemblyInfo.cs
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/bin/Debug/net8.0/Hospital.Infrastructure.deps.json
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/bin/Debug/net8.0/Hospital.Infrastructure.dll
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/bin/Debug/net8.0/Hospital.Infrastructure.pdb
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/bin/Debug/net8.0/Hospital.Domain.dll
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/bin/Debug/net8.0/Hospital.Domain.pdb
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.DEEB3E34.Up2Date
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.dll
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/refint/Hospital.Infrastructure.dll
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/Hospital.Infrastructure.pdb
+/Users/kudemeow/projects c#/hospital/Hospital.Infrastructure/obj/Debug/net8.0/ref/Hospital.Infrastructure.dll
